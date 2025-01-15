@@ -149,7 +149,7 @@ public class D_Operator {
 		System.out.println(booleanResult);
 		System.out.println(a);
 		
-		// 삼항 연산자 : 조건에 따라 지정한 결과를 반화하는 연산자
+		// 삼항 연산자 : 조건에 따라 지정한 결과를 반환하는 연산자
 		// 조건(논리식) ? 참일때 결과 : 거짓일때 결과
 		String resultString = false ? "참" : "거짓"; // 동일하게 Dead code 를 이용해서 조건문을 사용할 수 없을때 조건문 효과를 낼 수 있음
 		System.out.println(resultString);

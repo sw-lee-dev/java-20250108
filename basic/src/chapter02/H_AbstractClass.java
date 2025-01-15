@@ -66,6 +66,7 @@ class TourGuide extends Occupation {
 		System.out.println(country + "에서 관광을 설명합니다.");
 	}
 	
+	@Override
 	void sleep() {
 		System.out.println("관광지에서 잠을 잡니다.");
 	}
@@ -79,6 +80,7 @@ public class H_AbstractClass {
 		TourGuide tourGuide = new TourGuide(1, 20, "대한민국"); // 다형성을 이용해 업캐스팅해서 인스턴스를 생성
 		developer.work();
 		System.out.println(tourGuide.annual);
+		tourGuide.sleep();
 	}
 }
 

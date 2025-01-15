@@ -32,6 +32,5 @@ class AccessModifier3 {
 		// instance.protectedInt = 0;
 		// instance.packageInt = 0;
 		// instance.privateInt = 0;
-		
 	}
 }
