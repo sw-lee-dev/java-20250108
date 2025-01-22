@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.korit.crud.CrudApplication;
 import com.korit.crud.entity.BoardEntity;
 import com.korit.crud.repository.BoardRepository;
 
@@ -16,15 +17,15 @@ public class BoardRepositoryImplement implements BoardRepository {
 	}
 	
 	@Override
-	public void write(BoardEntity boardEntity) {
+	public void write(String id, String title, String contents) {
 		
 		final String SQL = "INSERT INTO board (id, title, contents) VALUES (?, ?, ?)";
 		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-			preparedStatement.setString(1, boardEntity.getId());
-			preparedStatement.setString(2, boardEntity.getTitle());
-			preparedStatement.setString(3, boardEntity.getContents());
+			preparedStatement.setString(1, id);
+			preparedStatement.setString(2, title);
+			preparedStatement.setString(3, contents);
 			
 			preparedStatement.executeUpdate();
 		} catch (Exception exception) {

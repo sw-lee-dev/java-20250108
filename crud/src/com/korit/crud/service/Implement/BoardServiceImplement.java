@@ -1,5 +1,6 @@
 package com.korit.crud.service.Implement;
 
+import com.korit.crud.CrudApplication;
 import com.korit.crud.dto.board.WriteBoardRequestDto;
 import com.korit.crud.entity.BoardEntity;
 import com.korit.crud.entity.UserEntity;
@@ -16,10 +17,10 @@ public class BoardServiceImplement implements BoardService {
 
 	@Override
 	public void write(WriteBoardRequestDto requestDto) {
+		String id = CrudApplication.SESSION;
 		String title = requestDto.getTitle();
 		String contents = requestDto.getContents();
-		BoardEntity boardEntity = new BoardEntity(title, contents);
-		boardRepository.write(boardEntity);
+		boardRepository.write(id, title, contents);
 		System.out.println("작성에 성공했습니다.");
 	}
 
