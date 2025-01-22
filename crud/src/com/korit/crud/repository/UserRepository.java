@@ -9,11 +9,11 @@ import com.korit.crud.entity.UserEntity;
 public interface UserRepository {
 	List<UserEntity> DATABASE_LIST = new ArrayList<>();
 	
-	void save(UserEntity userEntity); 		// 객체 저장
-	boolean existsById(String id);	  		// 회원가입 시 아이디 중복 검사
-	UserEntity findById(String id);	  		// 로그인 시 아이디 존재여부 검사
+	void save(UserEntity userEntity); 					// 객체 저장
+	boolean existsById(String id);	  					// 회원가입 시 아이디 중복 검사
+	UserEntity findById(String id);	  					// 로그인 시 아이디 존재여부 검사
 	void updateByNickname(String id, String nickname);	// 정보확인 후 정보수정-닉네임
 //	void deleteById(UserEntity userEntity, String password); // 비밀번호 확인 후 정보삭제
-	void deleteById(String id);
-	void deleteOne(UserEntity userEntity);
+	void deleteById(String id);							// 비밀번호 확인 후 정보삭제
+	void deleteOne(UserEntity userEntity);				// 비밀번호 확인 후 정보삭제
 }
