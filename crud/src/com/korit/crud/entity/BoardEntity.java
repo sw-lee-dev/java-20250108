@@ -1,25 +1,34 @@
 package com.korit.crud.entity;
 
+import com.korit.crud.dto.board.WriteBoardRequestDto;
+
 public class BoardEntity  {
-	private int boardNumber;
-	private String id;
+	private Integer boardNumber;
+	private String writerId;
 	private String title;
-	private String writeDate;
 	private String contents;
+	private String writeDate;
 	
-	public BoardEntity(int boardNumber, String id, String title, String writeDate, String contents) {
+	public BoardEntity(Integer boardNumber, String writerId, String title, String contents, String writeDate) {
 		this.boardNumber = boardNumber;
-		this.id = id;
+		this.writerId = writerId;
 		this.title = title;
-		this.writeDate = writeDate;
 		this.contents = contents;
+		this.writeDate = writeDate;
 	}
 	
-	public int getBoardNumber() {
+	// 실제 사용되는건 title 과 contents 뿐이고, user 테이블의 id 값을 외래키로 받아와서 nickname 을 받는 방식으로 작성
+	public BoardEntity(WriteBoardRequestDto requestDto, String writerId) {
+		this.title = requestDto.getTitle();
+		this.contents = requestDto.getContents();
+		this.writerId = writerId;
+	}
+	
+	public Integer getBoardNumber() {
 		return boardNumber;
 	}
-	public String getId() {
-		return id;
+	public String getWriterId() {
+		return writerId;
 	}
 	public String getTitle() {
 		return title;
@@ -29,13 +38,6 @@ public class BoardEntity  {
 	}
 	public String getWriteDate() {
 		return writeDate;
-	}
-	
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public void setContents(String contents) {
-		this.contents = contents;
 	}
 	
 }

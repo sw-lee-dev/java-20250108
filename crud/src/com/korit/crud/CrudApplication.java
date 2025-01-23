@@ -12,6 +12,7 @@ import com.korit.crud.controller.implement.UserControllerImplement;
 import com.korit.crud.db.MySQLConnector;
 import com.korit.crud.dto.auth.SignInRequestDto;
 import com.korit.crud.dto.auth.SignUpRequestDto;
+import com.korit.crud.dto.board.PatchBoardRequestDto;
 import com.korit.crud.dto.board.WriteBoardRequestDto;
 import com.korit.crud.dto.user.DeleteSignInUserRequestDto;
 import com.korit.crud.dto.user.PatchSignInUserRequestDto;
@@ -41,7 +42,7 @@ public class CrudApplication {
 		UserController userController = new UserControllerImplement(userService);
 		
 		BoardRepository boardrepository = new BoardRepositoryImplement(connection);
-		BoardService boardService = new BoardServiceImplement(boardrepository);
+		BoardService boardService = new BoardServiceImplement(boardrepository, userRepository);
 		BoardController boardController = new BoardControllerImplement(boardService);
 		
 		// 프로그램을 원할때 종료시키기
@@ -78,7 +79,45 @@ public class CrudApplication {
 				String boardRequest = scanner.nextLine();
 				if (boardRequest.equals("작성")) {
 					WriteBoardRequestDto writeBoardRequestDto = new WriteBoardRequestDto();
-					boardController.write(writeBoardRequestDto);
+					boardController.writeBoard(writeBoardRequestDto);
+				}
+				if (boardRequest.equals("리스트보기")) {
+					boardController.getListAll();
+				}
+				if (boardRequest.equals("상세보기")) {
+					// 최종 사용자로부터 숫자형태로 입력받고자 할땐 입력한 값이 진짜 숫자인지 검증을 해줄 필요가 있다. >> 문자가 올 경우도 대비해서 nextLine()으로 예외처리
+					try {
+						System.out.print("게시물 번호 : ");
+						Integer boardNumber = Integer.parseInt(scanner.nextLine());
+						
+						boardController.getContents(boardNumber);
+					} catch (Exception exception) {
+						System.out.println("존재하지 않는 게시물입니다.");
+					}
+				}
+				if (boardRequest.equals("수정")) {
+					try {
+						System.out.print("게시물 번호 : ");
+						Integer boardNumber = Integer.parseInt(scanner.nextLine());
+						
+						boolean isRightUser = boardController.checkWriter(boardNumber);
+						if (!isRightUser) continue;
+						
+						PatchBoardRequestDto patchBoardRequestDto = new PatchBoardRequestDto();
+						boardController.update(patchBoardRequestDto, boardNumber);
+					} catch (Exception exception) {
+						System.out.println("존재하지 않는 게시물입니다.");
+					}
+				}
+				if (boardRequest.equals("삭제")) {
+					try {
+						System.out.print("게시물 번호 : ");
+						Integer boardNumber = Integer.parseInt(scanner.nextLine());
+						
+						boardController.delete(boardNumber);
+					} catch (Exception exception) {
+						System.out.println("존재하지 않는 게시물입니다.");
+					}
 				}
 			}
 		}
