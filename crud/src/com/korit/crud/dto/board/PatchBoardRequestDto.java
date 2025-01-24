@@ -8,10 +8,10 @@ public class PatchBoardRequestDto {
 	
 	public PatchBoardRequestDto() {
 		Scanner scanner = new Scanner(System.in);
-		this.title = scanner.nextLine();
 		System.out.print("제목 : ");
-		this.contents = scanner.nextLine();
+		this.title = scanner.nextLine();
 		System.out.print("내용 : ");
+		this.contents = scanner.nextLine();
 	}
 
 	public String getTitle() {

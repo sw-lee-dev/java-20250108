@@ -54,5 +54,4 @@ public class WriteBoardRequestDto {
 	private boolean contentsCheck() {
 		return !contents.isBlank();
 	}
-	
 }

@@ -36,7 +36,7 @@ public class BoardViewVO {
 
 	@Override
 	public String toString() {
-		return "제목 : " + title + "\n작성자 닉네임 : " + writerNickname + "\n작성일 : " + writeDate + "\n내용 : " + contents;
+		return "제목 : " + title + "\n작성자 닉네임 : " + writerNickname + "\n내용 : " + contents + "\n작성일 : " + writeDate;
 	}
 
 	@Override

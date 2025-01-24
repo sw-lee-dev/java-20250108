@@ -79,12 +79,11 @@ public class BoardRepositoryImplement implements BoardRepository {
 			if (resultSet.next()) {
 				String title = resultSet.getString(1);
 				String contents = resultSet.getString(2);
-				String writerNickname = resultSet.getString(3);
-				String writerId = resultSet.getString(4);
+				String writerId = resultSet.getString(3);
+				String writerNickname = resultSet.getString(4);
 				String writeDate = resultSet.getString(5);
 				
 				board = new BoardViewVO(title, contents, writerId, writerNickname, writeDate);
-								
 			}
 		} catch (Exception exception) {
 			exception.printStackTrace();
@@ -93,51 +92,49 @@ public class BoardRepositoryImplement implements BoardRepository {
 	}
 
 	// 게시물 존재여부 확인 함수
-	@Override
-	public boolean existInUser(Integer boardNumber) {
-		
-		boolean exist = false;
-		
-		final String SQL = "SELECT * FROM board WHERE board_number = ?";
-		
-		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-			preparedStatement.setInt(1, boardNumber);
-			
-			ResultSet resultSet = preparedStatement.executeQuery();
-			exist = resultSet.next();
-		} catch (Exception exception) {
-			exception.printStackTrace();
-		}
-		return exist;
-	}
+//	@Override
+//	public boolean existsById(Integer boardNumber) {
+//		
+//		boolean exist = false;
+//		
+//		final String SQL = "SELECT * FROM board WHERE board_number = ?";
+//		
+//		try {
+//			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+//			preparedStatement.setInt(1, boardNumber);
+//			
+//			ResultSet resultSet = preparedStatement.executeQuery();
+//			exist = resultSet.next();
+//		} catch (Exception exception) {
+//			exception.printStackTrace();
+//		}
+//		return exist;
+//	}
 	
 	// 아이디와 일치하는 게시물인지 확인하는 함수
-	@Override
-	public boolean rightInUserIdAndBoardNumber(String writerId, Integer boardNumber) {
-		
-		boolean exist = false;
-		
-		final String SQL = "SELECT * FROM board WHERE writer_id =? AND board_number = ?";
-		
-		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-			preparedStatement.setString(1, writerId);
-			preparedStatement.setInt(2, boardNumber);
-			
-			ResultSet resultSet = preparedStatement.executeQuery();
-			exist = resultSet.next();
-		} catch (Exception exception) {
-			exception.printStackTrace();
-		}
-		return exist;
-	}
+//	@Override
+//	public boolean existsByIdAndBoardNumber(String writerId, Integer boardNumber) {
+//		
+//		boolean exist = false;
+//		
+//		final String SQL = "SELECT * FROM board WHERE writer_id =? AND board_number = ?";
+//		
+//		try {
+//			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+//			preparedStatement.setString(1, writerId);
+//			preparedStatement.setInt(2, boardNumber);
+//			
+//			ResultSet resultSet = preparedStatement.executeQuery();
+//			exist = resultSet.next();
+//		} catch (Exception exception) {
+//			exception.printStackTrace();
+//		}
+//		return exist;
+//	}
 
 	@Override
-	public boolean updateByNumber(Integer boardNumber, String title, String contents) {
-		
-		boolean result = false;
-		
+	public void updateByNumber(Integer boardNumber, String title, String contents) {
+				
 		final String SQL = "UPDATE board SET title = ?, contents = ? WHERE board_number = ?";
 		
 		try {
@@ -147,30 +144,26 @@ public class BoardRepositoryImplement implements BoardRepository {
 			preparedStatement.setInt(3, boardNumber);
 			
 			preparedStatement.executeUpdate();
-			result = true;
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
-		return result;
+		return;
 	}
 
 	@Override
-	public boolean deleteByNumber(Integer boardNumber) {
+	public void deleteByNumber(Integer boardNumber) {
 		
-		boolean result = false;
-		
-		final String SQL = "DELETE FROM board board_number = ?";
+		final String SQL = "DELETE FROM board WHERE board_number = ?";
 		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 			preparedStatement.setInt(1, boardNumber);
 			
 			preparedStatement.executeUpdate();
-			result = true;
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
-		return result;
+		return;
 	}
 
 

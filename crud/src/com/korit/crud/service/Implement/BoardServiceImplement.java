@@ -91,7 +91,7 @@ public class BoardServiceImplement implements BoardService {
 		}
 		boolean isRightUser = vo.getWriterId().equals(id);
 		if (!isRightUser) {
-			System.out.println("수정 권한이 없습니다.");
+			System.out.println("삭제 권한이 없습니다.");
 			return;
 		}
 		boardRepository.deleteByNumber(boardNumber);

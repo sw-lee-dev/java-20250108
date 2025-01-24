@@ -53,7 +53,7 @@ public class CrudApplication {
 			System.out.print("작업 " + job + " : ");
 			String request = scanner.nextLine();
 			
-			if (request.equals("exit")) break;
+			if (request.equals("나가기")) break;
 			
 			if (request.equals("회원가입")) {
 				SignUpRequestDto requestDto = new SignUpRequestDto();
@@ -75,16 +75,16 @@ public class CrudApplication {
 				userController.deleteSignInUser(deleteRequestDto);
 			}
 			if (request.equals("게시판")) {
-				System.out.print("게시판 작업 (작성, 리스트보기, 상세보기, 수정, 삭제) : ");
-				String boardRequest = scanner.nextLine();
-				if (boardRequest.equals("작성")) {
+				System.out.print("게시판 작업 (작성, 리스트보기, 상세보기, 수정, 삭제, 댓글, 좋아요) : ");
+				request = scanner.nextLine();
+				if (request.equals("작성")) {
 					WriteBoardRequestDto writeBoardRequestDto = new WriteBoardRequestDto();
 					boardController.writeBoard(writeBoardRequestDto);
 				}
-				if (boardRequest.equals("리스트보기")) {
+				if (request.equals("리스트보기")) {
 					boardController.getListAll();
 				}
-				if (boardRequest.equals("상세보기")) {
+				if (request.equals("상세보기")) {
 					// 최종 사용자로부터 숫자형태로 입력받고자 할땐 입력한 값이 진짜 숫자인지 검증을 해줄 필요가 있다. >> 문자가 올 경우도 대비해서 nextLine()으로 예외처리
 					try {
 						System.out.print("게시물 번호 : ");
@@ -95,7 +95,7 @@ public class CrudApplication {
 						System.out.println("존재하지 않는 게시물입니다.");
 					}
 				}
-				if (boardRequest.equals("수정")) {
+				if (request.equals("수정")) {
 					try {
 						System.out.print("게시물 번호 : ");
 						Integer boardNumber = Integer.parseInt(scanner.nextLine());
@@ -109,7 +109,7 @@ public class CrudApplication {
 						System.out.println("존재하지 않는 게시물입니다.");
 					}
 				}
-				if (boardRequest.equals("삭제")) {
+				if (request.equals("삭제")) {
 					try {
 						System.out.print("게시물 번호 : ");
 						Integer boardNumber = Integer.parseInt(scanner.nextLine());
@@ -118,6 +118,28 @@ public class CrudApplication {
 					} catch (Exception exception) {
 						System.out.println("존재하지 않는 게시물입니다.");
 					}
+				}
+				if (request.equals("댓글")) {
+					System.out.print("댓글 작업 (작성, 리스트보기, 가리기, 수정, 삭제) : ");
+					request = scanner.nextLine();
+					if (request.equals("작성")) {
+						
+					}
+					if (request.equals("리스트보기")) {
+						
+					}
+					if (request.equals("가리기")) {
+						
+					}
+					if (request.equals("수정")) {
+						
+					}
+					if (request.equals("삭제")) {
+						
+					}
+				}
+				if (request.equals("좋아요")) {
+					
 				}
 			}
 		}

@@ -17,10 +17,10 @@ public interface BoardRepository {
 	List<BoardListVO> findListAll();
 	BoardViewVO showListById(Integer boardNumber);
 	
-	boolean existInUser(Integer boardNumber); // 아이디에 맞는 사용자가 존재하는지 여부
-	boolean rightInUserIdAndBoardNumber(String writerId, Integer boardNumber); // 사용자가 존재한다면 그 게시물이 해당 사용자의 게시물인지, 사용자의 수정, 삭제 권한 확인
+//	boolean existsBtId(Integer boardNumber); // 아이디에 맞는 사용자가 존재하는지 여부
+//	boolean existsByIdAndBoardNumber(String writerId, Integer boardNumber); // 사용자가 존재한다면 그 게시물이 해당 사용자의 게시물인지, 사용자의 수정, 삭제 권한 확인
 	
-	boolean updateByNumber(Integer boardNumber, String title, String contents);
-	boolean deleteByNumber(Integer boardNumber);
+	void updateByNumber(Integer boardNumber, String title, String contents);
+	void deleteByNumber(Integer boardNumber);
 
 }
