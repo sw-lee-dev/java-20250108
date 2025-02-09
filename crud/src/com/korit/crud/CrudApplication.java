@@ -5,26 +5,33 @@ import java.util.Scanner;
 
 import com.korit.crud.controller.AuthController;
 import com.korit.crud.controller.BoardController;
+import com.korit.crud.controller.CommentController;
 import com.korit.crud.controller.UserController;
 import com.korit.crud.controller.implement.AuthControllerImplement;
 import com.korit.crud.controller.implement.BoardControllerImplement;
+import com.korit.crud.controller.implement.CommentControllerImplement;
 import com.korit.crud.controller.implement.UserControllerImplement;
 import com.korit.crud.db.MySQLConnector;
 import com.korit.crud.dto.auth.SignInRequestDto;
 import com.korit.crud.dto.auth.SignUpRequestDto;
+import com.korit.crud.dto.board.CommentRequestDto;
 import com.korit.crud.dto.board.PatchBoardRequestDto;
 import com.korit.crud.dto.board.WriteBoardRequestDto;
 import com.korit.crud.dto.user.DeleteSignInUserRequestDto;
 import com.korit.crud.dto.user.PatchSignInUserRequestDto;
 import com.korit.crud.repository.BoardRepository;
+import com.korit.crud.repository.CommentRepository;
 import com.korit.crud.repository.UserRepository;
 import com.korit.crud.repository.Implement.BoardRepositoryImplement;
+import com.korit.crud.repository.Implement.CommentRepositoryImplement;
 import com.korit.crud.repository.Implement.UserRepositoryImplement;
 import com.korit.crud.service.AuthService;
 import com.korit.crud.service.BoardService;
+import com.korit.crud.service.CommentService;
 import com.korit.crud.service.UserService;
 import com.korit.crud.service.Implement.AuthServiceImplement;
 import com.korit.crud.service.Implement.BoardServiceImplement;
+import com.korit.crud.service.Implement.CommentServiceImplement;
 import com.korit.crud.service.Implement.UserServiceImplement;
 
 public class CrudApplication {
@@ -44,6 +51,11 @@ public class CrudApplication {
 		BoardRepository boardrepository = new BoardRepositoryImplement(connection);
 		BoardService boardService = new BoardServiceImplement(boardrepository, userRepository);
 		BoardController boardController = new BoardControllerImplement(boardService);
+
+		CommentRepository commentRepository = new CommentRepositoryImplement(connection);
+		CommentService commentService = new CommentServiceImplement(commentRepository, userRepository);
+		CommentController commentController = new CommentControllerImplement(commentService);
+
 		
 		// 프로그램을 원할때 종료시키기
 		Scanner scanner = new Scanner(System.in);
@@ -123,7 +135,8 @@ public class CrudApplication {
 					System.out.print("댓글 작업 (작성, 리스트보기, 가리기, 수정, 삭제) : ");
 					request = scanner.nextLine();
 					if (request.equals("작성")) {
-						
+						CommentRequestDto requestDto = new CommentRequestDto();
+						commentController.saveComment(requestDto);
 					}
 					if (request.equals("리스트보기")) {
 						
