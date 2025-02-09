@@ -22,6 +22,7 @@ public class CommentControllerImplement implements CommentController {
 		}
 		if (!requestDto.validate()) return;
 
+		commentService.saveComment(requestDto, id);
 	}
 
 	@Override
