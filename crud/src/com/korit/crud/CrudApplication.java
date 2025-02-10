@@ -139,7 +139,7 @@ public class CrudApplication {
 						commentController.saveComment(requestDto);
 					}
 					if (request.equals("리스트보기")) {
-						
+						commentController.getListAll();
 					}
 					if (request.equals("가리기")) {
 						
