@@ -49,13 +49,13 @@ public class BoardRepositoryImplement implements BoardRepository {
 			
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
-				 Integer boardNumber = resultSet.getInt(1);
-				 String title = resultSet.getString(2);
-				 String writerNickname = resultSet.getString(3);
-				 String writeDate = resultSet.getString(4);
-				 
-				 BoardListVO vo = new BoardListVO(boardNumber, title, writerNickname, writeDate);
-				 boardList.add(vo);
+				Integer boardNumber = resultSet.getInt(1);
+				String title = resultSet.getString(2);
+				String writerNickname = resultSet.getString(3);
+				String writeDate = resultSet.getString(4);
+				
+				BoardListVO vo = new BoardListVO(boardNumber, title, writerNickname, writeDate);
+				boardList.add(vo);
 			}
 		} catch (Exception exception) {
 			exception.printStackTrace();
