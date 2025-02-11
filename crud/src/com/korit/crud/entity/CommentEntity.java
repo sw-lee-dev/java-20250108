@@ -24,6 +24,7 @@ public class CommentEntity {
 	}
 	
 	public CommentEntity(CommentRequestDto requestDto, String writerId) {
+		this.boardNumber = requestDto.getBoardNumber();
 		this.contets = requestDto.getContents();
 		this.writerId = writerId;
 	}
